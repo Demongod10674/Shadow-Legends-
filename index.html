@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowPedia AI ⚡ - Universal Knowledge Engine</title>
+    <meta name="theme-color" content="#12052b">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, rgb(4, 8, 22), rgb(18, 5, 43), rgb(36, 16, 95), rgb(7, 28, 79));
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(125, 60, 255, 0.1) 2px, transparent 2px) 0% 0% / 45px 45px;
+            animation: gridMove 15s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0px, 0px); }
+            100% { transform: translate(45px, 45px); }
+        }
+
+        .particle {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background: rgb(123, 224, 255);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-120vh); }
+        }
+
+        header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(125, 60, 255, 0.3);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: rgb(210, 179, 255);
+            text-shadow: 0 0 20px rgb(125, 60, 255);
+            animation: glow 2s ease infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgb(125, 60, 255); }
+            100% { text-shadow: 0 0 25px rgb(125, 60, 255), 0 0 50px rgb(125, 60, 255); }
+        }
+
+        header p {
+            color: rgb(221, 221, 221);
+            font-size: 0.95rem;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .search-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .searchBox {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .searchBox input {
+            flex: 1;
+            min-width: 200px;
+            padding: 18px;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 20px rgba(125, 60, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .searchBox input:focus {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 30px rgba(125, 60, 255, 0.4);
+        }
+
+        .searchBox input::placeholder {
+            color: rgb(208, 200, 255);
+        }
+
+        .searchBox button {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgb(125, 60, 255), rgb(47, 141, 255));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(125, 60, 255, 0.3);
+        }
+
+        .searchBox button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(125, 60, 255, 0.6);
+        }
+
+        .searchBox button:active {
+            transform: scale(0.98);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 15px;
+            border: 1px solid rgba(125, 60, 255, 0.5);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgb(210, 179, 255);
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, rgb(125, 60, 255), rgb(47, 141, 255));
+            border-color: rgb(125, 60, 255);
+            box-shadow: 0 0 15px rgba(125, 60, 255, 0.4);
+        }
+
+        .result {
+            width: 100%;
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0px); }
+        }
+
+        .result h2 {
+            color: rgb(210, 179, 255);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .result p {
+            line-height: 1.9;
+            color: rgb(236, 232, 255);
+            margin-bottom: 15px;
+        }
+
+        .result ul {
+            margin-left: 20px;
+            color: rgb(236, 232, 255);
+            line-height: 2;
+        }
+
+        .ai-assistant {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .ai-chat-box {
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(125, 60, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-header {
+            color: rgb(123, 224, 255);
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(125, 60, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(125, 60, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgb(125, 60, 255);
+            border-radius: 10px;
+        }
+
+        .message {
+            padding: 12px 15px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-10px); }
+            100% { opacity: 1; transform: translateX(0px); }
+        }
+
+        .message.user {
+            background: rgb(125, 60, 255);
+            margin-left: 20px;
+            text-align: right;
+            color: white;
+        }
+
+        .message.ai {
+            background: rgba(47, 141, 255, 0.2);
+            margin-right: 20px;
+            border-left: 3px solid rgb(47, 141, 255);
+            color: rgb(200, 220, 255);
+        }
+
+        .ai-input-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .ai-input-box input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .ai-input-box input:focus {
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(125, 60, 255, 0.3);
+        }
+
+        .ai-input-box input::placeholder {
+            color: rgb(180, 170, 200);
+        }
+
+        .ai-input-box button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgb(47, 141, 255);
+            color: white;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .ai-input-box button:hover {
+            background: rgb(30, 120, 255);
+            box-shadow: 0 0 15px rgba(47, 141, 255, 0.4);
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+            color: rgb(153, 153, 153);
+            border-top: 1px solid rgba(125, 60, 255, 0.2);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-assistant {
+                position: relative;
+                top: 0;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .searchBox {
+                flex-direction: column;
+            }
+
+            .category-tabs {
+                justify-content: center;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .ai-chat-box {
+                height: 400px;
+            }
+
+            .main-container {
+                margin: 20px auto;
+            }
+        }
+
+        .loading {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: rgb(123, 224, 255);
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            padding: 10px;
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 3px solid #ff6b6b;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .success-message {
+            color: #51cf66;
+            padding: 10px;
+            background: rgba(81, 207, 102, 0.1);
+            border-left: 3px solid #51cf66;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- PARTICLES -->
+    <div class="particle" style="left:10%; animation-duration:12s;"></div>
+    <div class="particle" style="left:30%; animation-duration:9s;"></div>
+    <div class="particle" style="left:50%; animation-duration:15s;"></div>
+    <div class="particle" style="left:70%; animation-duration:11s;"></div>
+    <div class="particle" style="left:90%; animation-duration:13s;"></div>
+
+    <!-- HEADER -->
+    <header>
+        <h1>🔮 ShadowPedia AI ⚡</h1>
+        <p>Universal Knowledge Engine - Search Everything & Get AI-Powered Answers</p>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <!-- SEARCH & RESULTS SECTION -->
+        <div class="search-section">
+            <!-- SEARCH BOX -->
+            <div class="searchBox">
+                <input type="text" id="searchInput" placeholder="Search influencers, gamers, celebrities, science, technology, apps, history, anime and more...">
+                <button onclick="performSearch()">Search</button>
+            </div>
+
+            <!-- CATEGORY TABS -->
+            <div class="category-tabs">
+                <button class="category-btn" onclick="filterByCategory('all')">All</button>
+                <button class="category-btn" onclick="filterByCategory('influencers')">Influencers</button>
+                <button class="category-btn" onclick="filterByCategory('gamers')">Gamers</button>
+                <button class="category-btn" onclick="filterByCategory('celebrities')">Celebrities</button>
+                <button class="category-btn" onclick="filterByCategory('science')">Science</button>
+                <button class="category-btn" onclick="filterByCategory('technology')">Technology</button>
+                <button class="category-btn" onclick="filterByCategory('anime')">Anime</button>
+                <button class="category-btn" onclick="filterByCategory('gaming')">Gaming</button>
+            </div>
+
+            <!-- RESULT BOX -->
+            <div class="result" id="resultBox">
+                <h2>🚀 System Ready ⚡</h2>
+                <p>Welcome to ShadowPedia AI - Your Universal Knowledge Engine</p>
+                <p><strong>Search for:</strong></p>
+                <ul>
+                    <li>📱 <strong>Influencers & YouTubers:</strong> Get details about top creators</li>
+                    <li>🎮 <strong>Gamers & Gaming:</strong> Popular gamers, games, esports</li>
+                    <li>⭐ <strong>Celebrities:</strong> Information about actors, musicians, athletes</li>
+                    <li>🔬 <strong>Science & Technology:</strong> Latest discoveries and innovations</li>
+                    <li>📚 <strong>Anime & Manga:</strong> Characters, series, studios</li>
+                    <li>💻 <strong>Apps & Software:</strong> Popular applications and tools</li>
+                    <li>🌍 <strong>History & Geography:</strong> Global knowledge</li>
+                    <li>📊 <strong>And Much More:</strong> Ask anything!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI ASSISTANT SECTION -->
+        <div class="ai-assistant">
+            <div class="ai-chat-box">
+                <div class="ai-header">
+                    🤖 SHADOW AI ASSISTANT ⚡
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai">
+                        👋 Hello! I'm your Shadow AI Assistant. I can help you with any questions, problems, or information you need. Ask me anything!
+                    </div>
+                </div>
+
+                <div class="ai-input-box">
+                    <input type="text" id="aiInput" placeholder="Ask me anything..." onkeypress="handleAIKeyPress(event)">
+                    <button onclick="sendAIMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>🔒 Powered by Shadow Intelligence ⚡ | © 2026 ShadowPedia AI</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Your secure gateway to unlimited knowledge</p>
+    </footer>
+
+    <script>
+        // Knowledge Database
+        const knowledgeBase = {
+            influencers: {
+                'mrbeast': 'MrBeast (Jimmy Donaldson) is a popular YouTuber known for challenge videos and philanthropy. He has over 200M subscribers and is one of the most-watched creators on YouTube.',
+                'tseries': 'T-Series is an Indian entertainment company and the most subscribed YouTube channel globally, with over 250M subscribers.',
+                'SET': 'SET India is the YouTube channel of Sony Entertainment Television India, featuring comedy, drama, and entertainment content.',
+                'vsauce': 'Vsauce (Michael Stevens) is a science educator famous for the "Vsauce" YouTube series explaining scientific concepts.',
+                'dwayne johnson': 'Dwayne "The Rock" Johnson is a former wrestler turned actor and motivational influencer with massive social media following.'
+            },
+            gamers: {
+                'pewdiepie': 'PewDiePie (Felix Kjellberg) is a Swedish gaming content creator with one of the largest YouTube followings.',
+                'pokimane': 'Pokimane (Imane Anys) is a Moroccan-Canadian streamer known for playing multiplayer games on Twitch.',
+                'valkyrae': 'Valkyrae (Rae Clips) is an American streamer and esports player known for FPS games.',
+                'shroud': 'Shroud (Michael Grzesiek) is a professional esports player and streamer known for games like CS:GO and VALORANT.',
+                'ninja': 'Ninja (Tyler Blevins) is a professional gamer and streamer famous for Fortnite gameplay.'
+            },
+            celebrities: {
+                'tom cruise': 'Tom Cruise is an American actor known for movies like Top Gun, Mission Impossible, and Jerry Maguire.',
+                'taylor swift': 'Taylor Swift is an American singer-songwriter known for hits like "Anti-Hero" and "Shake It Off".',
+                'cristiano ronaldo': 'Cristiano Ronaldo is a Portuguese footballer widely considered one of the greatest players of all time.',
+                'lionel messi': 'Lionel Messi is an Argentine footballer, widely regarded as one of the best players in football history.',
+                'oprah winfrey': 'Oprah Winfrey is an American media mogul and philanthropist known for her influential talk show.'
+            },
+            science: {
+                'artificial intelligence': 'AI is the simulation of human intelligence by computer systems. It includes machine learning, deep learning, and neural networks.',
+                'quantum computing': 'Quantum computers use quantum bits (qubits) to perform calculations exponentially faster than classical computers.',
+                'black holes': 'Black holes are regions in space where gravity is so strong that nothing, not even light, can escape.',
+                'dna': 'DNA (deoxyribonucleic acid) is the molecule that carries genetic instructions for life in all living organisms.',
+                'relativity': 'Einstein\'s theory of relativity describes gravity and the behavior of objects in space and time.'
+            },
+            technology: {
+                'blockchain': 'Blockchain is a distributed ledger technology that powers cryptocurrencies and decentralized applications.',
+                'web3': 'Web3 refers to the third generation of the internet, focusing on decentralization and blockchain technology.',
+                'iot': 'Internet of Things (IoT) involves connecting physical devices to the internet to collect and share data.',
+                '5g': '5G is the fifth generation of wireless technology offering faster speeds and lower latency than 4G.',
+                'cloud computing': 'Cloud computing provides on-demand computing services delivered over the internet.'
+            },
+            anime: {
+                'naruto': 'Naruto is a popular anime about a ninja who dreams of becoming the strongest leader of his village.',
+                'one piece': 'One Piece is a long-running anime about pirates searching for the legendary treasure "One Piece".',
+                'dragon ball': 'Dragon Ball is a classic anime featuring martial arts, adventure, and powerful transformations.',
+                'attack on titan': 'Attack on Titan is a dark fantasy anime about humanity\'s fight against giant humanoid creatures.',
+                'demon slayer': 'Demon Slayer is a popular anime about a boy fighting demons to save his sister.'
+            },
+            gaming: {
+                'fortnite': 'Fortnite is a free-to-play battle royale game developed by Epic Games, one of the most popular games globally.',
+                'valorant': 'VALORANT is a competitive tactical shooter game by Riot Games combining strategy and skill.',
+                'minecraft': 'Minecraft is a sandbox game where players can build, explore, and survive in block-based worlds.',
+                'elden ring': 'Elden Ring is an action RPG developed by FromSoftware known for its challenging gameplay.',
+                'call of duty': 'Call of Duty is a first-person shooter franchise with multiple games and game modes.'
+            }
+        };
+
+        let currentCategory = 'all';
+
+        // Search Function
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            let result = searchKnowledge(query);
+            displayResult(query, result);
+        }
+
+        // Search Knowledge Base
+        function searchKnowledge(query) {
+            let allResults = {};
+
+            for (let category in knowledgeBase) {
+                for (let item in knowledgeBase[category]) {
+                    if (item.includes(query) || knowledgeBase[category][item].toLowerCase().includes(query)) {
+                        if (!allResults[category]) allResults[category] = [];
+                        allResults[category].push({
+                            item: item,
+                            info: knowledgeBase[category][item]
+                        });
+                    }
+                }
+            }
+
+            return allResults;
+        }
+
+        // Display Search Results
+        function displayResult(query, results) {
+            const resultBox = document.getElementById('resultBox');
+            
+            if (Object.keys(results).length === 0) {
+                resultBox.innerHTML = `
+                    <h2>No results found for "${query}"</h2>
+                    <p>Try searching for different keywords or ask the AI assistant for more information.</p>
+                    <p style="margin-top: 20px; color: rgb(150, 180, 255);">
+                        💡 <strong>Tip:</strong> Use the AI assistant on the right to ask detailed questions about topics!
+                    </p>
+                `;
+                return;
+            }
+
+            let html = `<h2>📚 Results for "${query}"</h2>`;
+
+            for (let category in results) {
+                html += `<div style="margin: 20px 0; padding: 15px; background: rgba(125, 60, 255, 0.1); border-radius: 10px;">`;
+                html += `<h3 style="color: rgb(123, 224, 255); text-transform: capitalize; margin-bottom: 10px;">📁 ${category}</h3>`;
+                
+                results[category].forEach(item => {
+                    html += `<div style="margin: 10px 0; padding: 10px; background: rgba(47, 141, 255, 0.1); border-left: 3px solid rgb(47, 141, 255); border-radius: 5px;">`;
+                    html += `<strong style="color: rgb(210, 179, 255); text-transform: capitalize;">${item.item}</strong><br>`;
+                    html += `<p style="margin-top: 8px; font-size: 0.95rem;">${item.info}</p>`;
+                    html += `</div>`;
+                });
+
+                html += `</div>`;
+            }
+
+            resultBox.innerHTML = html;
+        }
+
+        // Filter by Category
+        function filterByCategory(category) {
+            currentCategory = category;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const resultBox = document.getElementById('resultBox');
+            if (category === 'all') {
+                resultBox.innerHTML = `<h2>🚀 All Categories</h2><p>Select a category to explore or search for specific topics.</p>`;
+            } else {
+                let html = `<h2 style="text-transform: capitalize;">📁 ${category} Category</h2>`;
+                if (knowledgeBase[category]) {
+                    for (let item in knowledgeBase[category]) {
+                        html += `<div style="margin: 15px 0; padding: 12px; background: rgba(125, 60, 255, 0.1); border-radius: 8px;">`;
+                        html += `<strong style="color: rgb(210, 179, 255); text-transform: capitalize;">${item}</strong><br>`;
+                        html += `<p style="margin-top: 8px; font-size: 0.95rem;">${knowledgeBase[category][item]}</p>`;
+                        html += `</div>`;
+                    }
+                } else {
+                    html += `<p>No information available for this category yet.</p>`;
+                }
+                resultBox.innerHTML = html;
+            }
+        }
+
+        // AI Chat Functions
+        const aiResponses = {
+            greeting: [
+                "Hello! I'm your Shadow AI Assistant. How can I help you today?",
+                "Hey there! Ready to answer your questions. What do you want to know?"
+            ],
+            help: [
+                "I can help you with information about influencers, gamers, celebrities, science, technology, anime, gaming, and much more! Just ask me anything.",
+                "I'm here to help! You can ask me questions about any topic and I'll do my best to provide useful information."
+            ],
+            problem: [
+                "I understand. Tell me more about the problem and I'll help you solve it.",
+                "Let me help you with that. Can you provide more details?"
+            ],
+            default: [
+                "That's an interesting question! Based on my knowledge, I can tell you that this is a complex topic with many aspects.",
+                "I understand. Let me provide you with relevant information about that topic.",
+                "Great question! Here's what I know about that:"
+            ]
+        };
+
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Generate AI response
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                addMessage(response, 'ai');
+            }, 500);
+        }
+
+        function addMessage(text, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateAIResponse(query) {
+            const lowerQuery = query.toLowerCase();
+
+            // Check for greeting
+            if (lowerQuery.match(/hello|hi|hey|greetings/)) {
+                return aiResponses.greeting[Math.floor(Math.random() * aiResponses.greeting.length)];
+            }
+
+            // Check for help request
+            if (lowerQuery.match(/help|what can you do|capabilities|assist/)) {
+                return aiResponses.help[Math.floor(Math.random() * aiResponses.help.length)];
+            }
+
+            // Check for problem-solving
+            if (lowerQuery.match(/problem|issue|trouble|help me|fix|solve|wrong/)) {
+                return aiResponses.problem[Math.floor(Math.random() * aiResponses.problem.length)];
+            }
+
+            // Search knowledge base
+            const results = searchKnowledge(query);
+            if (Object.keys(results).length > 0) {
+                let response = aiResponses.default[Math.floor(Math.random() * aiResponses.default.length)] + "\n\n";
+                
+                for (let category in results) {
+                    results[category].forEach((item, index) => {
+                        if (index === 0) {
+                            response += `📌 ${item.info}`;
+                        }
+                    });
+                }
+
+                return response;
+            }
+
+            // General response
+            return `That's an interesting question about "${query}". While I don't have specific information in my database, I'd recommend searching our knowledge base or asking me follow-up questions. I'm continuously learning and improving my responses!`;
+        }
+
+        function handleAIKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendAIMessage();
+            }
+        }
+
+        // Allow Enter key for search as well
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        });
+    </script>
+</body>
+</html>
