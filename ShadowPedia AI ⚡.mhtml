@@ -1,0 +1,216 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://vocal-tomato-39cbdb09.edgeone.app/
+Subject: =?utf-8?Q?ShadowPedia=20AI=20=E2=9A=A1?=
+Date: Thu, 4 Jun 2026 14:17:19 +0530
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--n80CmFnCGAkdRPhsM32OyCJMTKEDRUpgmo9ux3xxBB----"
+
+
+------MultipartBoundary--n80CmFnCGAkdRPhsM32OyCJMTKEDRUpgmo9ux3xxBB----
+Content-Type: text/html
+Content-ID: <frame-CA1809D66E7DD0D9FD4482DFA52F5E39@mhtml.blink>
+Content-Transfer-Encoding: binary
+Content-Location: https://vocal-tomato-39cbdb09.edgeone.app/
+
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="cid:css-990393d6-8b6f-4e31-97e4-75b385e6da2a@mhtml.blink" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShadowPedia AI ⚡</title>
+
+<meta name="theme-color" content="#12052b">
+
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&amp;display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+
+<div class="particle" style="left:10%; animation-duration:12s;"></div>
+
+<div class="particle" style="left:30%; animation-duration:9s;"></div>
+
+<div class="particle" style="left:50%; animation-duration:15s;"></div>
+
+<div class="particle" style="left:70%; animation-duration:11s;"></div>
+
+<div class="particle" style="left:90%; animation-duration:13s;"></div>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>ShadowPedia AI ⚡</h1>
+
+<p>
+Forbidden knowledge from the shadow intelligence realm ⚡
+</p>
+
+</header>
+
+<!-- MAIN -->
+
+<div class="container">
+
+<!-- SEARCH -->
+
+<div class="searchBox">
+
+<input type="text" id="searchInput" placeholder="Search celebrities, gamers, anime, science, maths, apps and more...">
+
+<button>
+Search
+</button>
+
+</div>
+
+<!-- RESULT -->
+
+<div class="result" id="resultBox">
+
+<h2>System Ready ⚡</h2>
+
+<p>
+
+Search anything:
+YouTubers,
+companies,
+history,
+science,
+games,
+maths,
+apps,
+technology,
+celebrities,
+anime and more.
+
+</p>
+
+</div>
+
+<!-- AI COMMENT -->
+
+<div class="aiBox">
+
+<h3>SHADOW AI ⚡</h3>
+
+<p id="aiText">
+
+Welcome to ShadowPedia AI.<br><br>
+
+I scan knowledge from multiple intelligence systems.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+Powered by Shadow Intelligence ⚡
+
+</footer>
+
+
+
+
+
+</body></html>
+------MultipartBoundary--n80CmFnCGAkdRPhsM32OyCJMTKEDRUpgmo9ux3xxBB----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap
+
+@charset "utf-8";
+
+@font-face { font-family: Orbitron; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Orbitron; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Orbitron; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/orbitron/v35/yMJRMIlzdpvBhQQL_Qq7dy0.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+------MultipartBoundary--n80CmFnCGAkdRPhsM32OyCJMTKEDRUpgmo9ux3xxBB----
+Content-Type: text/css
+Content-Transfer-Encoding: binary
+Content-Location: cid:css-990393d6-8b6f-4e31-97e4-75b385e6da2a@mhtml.blink
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: Orbitron, sans-serif; background: linear-gradient(135deg, rgb(4, 8, 22), rgb(18, 5, 43), rgb(36, 16, 95), rgb(7, 28, 79)); color: white; overflow-x: hidden; min-height: 100vh; }
+
+body::before { content: ""; position: fixed; width: 200%; height: 200%; background: radial-gradient(circle, rgba(125, 60, 255, 0.133) 2px, transparent 2px) 0% 0% / 45px 45px; animation: 15s linear 0s infinite normal none running gridMove; z-index: -1; }
+
+@keyframes gridMove { 
+  0% { transform: translate(0px, 0px); }
+  100% { transform: translate(-100px, -100px); }
+}
+
+.particle { position: fixed; width: 5px; height: 5px; background: rgb(123, 224, 255); border-radius: 50%; opacity: 0.4; animation: auto linear 0s infinite normal none running float; }
+
+@keyframes float { 
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-120vh); }
+}
+
+header { text-align: center; padding: 40px 20px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+
+header h1 { font-size: 3rem; color: rgb(210, 179, 255); text-shadow: rgb(125, 60, 255) 0px 0px 20px; animation: 2s ease 0s infinite alternate none running glow; }
+
+@keyframes glow { 
+  0% { text-shadow: rgb(125, 60, 255) 0px 0px 10px; }
+  100% { text-shadow: rgb(125, 60, 255) 0px 0px 25px, rgb(125, 60, 255) 0px 0px 50px; }
+}
+
+header p { margin-top: 10px; color: rgb(221, 221, 221); }
+
+.container { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+
+.searchBox { width: 100%; max-width: 950px; display: flex; gap: 12px; }
+
+.searchBox input { flex: 1 1 0%; padding: 18px; border: none; outline: none; border-radius: 15px; background: rgba(255, 255, 255, 0.08); color: white; font-size: 1rem; box-shadow: rgba(125, 60, 255, 0.25) 0px 0px 20px; }
+
+.searchBox input::placeholder { color: rgb(208, 200, 255); }
+
+.searchBox button { padding: 18px 30px; border: none; border-radius: 15px; background: linear-gradient(135deg, rgb(125, 60, 255), rgb(47, 141, 255)); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
+
+.searchBox button:hover { transform: scale(1.05); }
+
+.result { width: 100%; max-width: 950px; margin-top: 20px; padding: 30px; border-radius: 25px; background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); animation: 1s ease 0s 1 normal none running fade; }
+
+@keyframes fade { 
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+
+.result h2 { color: rgb(210, 179, 255); margin-bottom: 20px; }
+
+.result p { line-height: 1.9; color: rgb(236, 232, 255); }
+
+.topicImage { width: 100%; max-height: 450px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; box-shadow: rgba(123, 224, 255, 0.25) 0px 0px 25px; }
+
+.aiBox { width: 100%; max-width: 950px; margin-top: 20px; padding: 25px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+.aiBox h3 { color: rgb(123, 224, 255); margin-bottom: 10px; }
+
+footer { text-align: center; padding: 30px; color: rgb(153, 153, 153); }
+
+@media (max-width: 700px) {
+  .searchBox { flex-direction: column; }
+}
+------MultipartBoundary--n80CmFnCGAkdRPhsM32OyCJMTKEDRUpgmo9ux3xxBB------
